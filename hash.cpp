@@ -26,3 +26,19 @@ int getdir (string dir, vector<string> &files){
 }
 
 
+void Hash::Hash(int n){
+    this->size = n;
+    // table = new ...     
+}
+
+void Hash::insertItem(int key){
+
+}
+
+void Hash::deleteItem(int key){
+
+}
+
+
+
+
