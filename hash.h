@@ -5,27 +5,49 @@
 #include <string>
 using namespace std;
 
-int getdir(string dir, vector<string> &files);
+int getdir (string dir, vector<string> &files);
+
+class HashEntry{
+    private:
+	int value;
+	HashEntry *next;
+    public:
+	HashEntry(int value){
+	    this->value = value;
+	    this->next = NULL;
+	}
+	int getValue(){	
+	    return value;
+	}
+	void setValue(int value){
+	    this->value = value;
+	}
+	HashEntry *getNext(){
+	    return next;
+	}
+	void setNext(HashEntry *next){
+	    this->next = next;
+	}
+};
 
 class Hash {
     private:
-    	int size;
-    	HashNode *table;
+    	int table_size;
+	HashEntry **table;
+	int collisions[1000][1000]; 
 
- 	struct HashNode
-	{
-	    int value;
-	    HashNode *next;
-	};
-	
-	HashNode *head;
-   
     public:
-  	Hash(int sze); 				// Constructor	
-  	void insertItem(int n);                 // inserts a key into the hash table
-	void deleteItem(int key);		// deletes a key from the hash table
-	int hashfunc(int n);			// map key to value 	
+	// Constructor defines how large the hash table will be
+	// parameter should be a very large prime number
+  	Hash(int size); 			
+       
+  	// hashfunc() takes key, string of n words, and 
+  	// returns the index to place in hash table	
+	int hashfunc(string chunk);
+	void put(int hash, int value);
+	void printcollisions(int size, int min, vector<string>& files); 
+	~Hash();		 	
 
-}:
+};
 
 #endif
